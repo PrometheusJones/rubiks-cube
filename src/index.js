@@ -1,10 +1,15 @@
 const express = require('express');
+const handlebars = require('express-handlebars');
 
 const app = express();
 
+app.engine('hbs', handlebars({
+    extname: 'hbs'
+}));
+app.set('view engine', 'hbs')
+
 app.all('/', (req, res) => {
-    res.write('Hello World its working');
-    res.end();
+    res.render('index', { layout: false })
 });
 
 app.listen(5000, console.log.bind(console, 'Application is running on http://localhost:5000'));
