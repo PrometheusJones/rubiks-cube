@@ -5,8 +5,10 @@ const cubeService = require('../services/cubeSevice.js')
 const router = express.Router();
 
 const getCreateCube = (req, res) => {
-    let cubes = cubeService.getAll()
+    let cubes = cubeService.getAll();
+
     console.log(cubes);
+
     res.render('create');
 }
 
