@@ -14,8 +14,24 @@ const create = (name, description, imageUrl, difficulty) => {
 const getOne = (id) => Cube.getAll().find(x => x.id == id);
 
 const search = (text, from, to) => {
-    let cubes = Cube.getAll()
-    return cubes.filter(x => x.name.toLowerCase().includes(text.toLowerCase()));
+    let result = Cube.getAll();
+    if (text) {
+        result = result.filter(x => x.name.toLowerCase().includes(text.toLowerCase()));
+    }
+
+    if (from) {
+        result = result.filter(x => Number(x.difficulty) >= from);
+    }
+
+    if (to) {
+        result = result.filter(x => Number(x.difficulty) <= to);
+    }
+
+    if (!text && !from && !to) {
+        result = []
+    }
+    return result
+
 }
 
 const cubeService = {
