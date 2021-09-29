@@ -13,10 +13,16 @@ const create = (name, description, imageUrl, difficulty) => {
 
 const getOne = (id) => Cube.getAll().find(x => x.id == id);
 
+const search = (text, from, to) => {
+    let cubes = Cube.getAll()
+    return cubes.filter(x => x.name.toLowerCase().includes(text.toLowerCase()));
+}
+
 const cubeService = {
     create,
     getAll,
-    getOne
+    getOne,
+    search
 };
 
 module.exports = cubeService;
