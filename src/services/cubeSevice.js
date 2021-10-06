@@ -2,19 +2,24 @@ const Cube = require('../models/Cube.js');
 
 
 //const getAll = () => cubeDb.slice(); //Clone cubeDb 
-const getAll = () => Cube.getAll();
+const getAll = () => Cube.find().lean();
 
 const create = (name, description, imageUrl, difficulty) => {
 
-    let cube = new Cube(name, description, imageUrl, difficulty);
+    let cube = new Cube({
+        name,
+        description,
+        imageUrl,
+        difficulty
+    });
 
-    Cube.add(cube);
+    return cube.save();
 };
 
-const getOne = (id) => Cube.getAll().find(x => x.id == id);
+const getOne = (id) => Cube.findById(id);
 
 const search = (text, from, to) => {
-    let result = Cube.getAll();
+    let result = getAll();
     if (text) {
         result = result.filter(x => x.name.toLowerCase().includes(text.toLowerCase()));
     }
