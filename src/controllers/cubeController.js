@@ -23,7 +23,8 @@ const createCube = async (req, res) => {
 const cubeDetails = async (req, res) => {
     let id = req.params.cubeId;
     let cube = await cubeService.getOne(id);
-    res.render('details', { ...cube });
+    console.log(cube);
+    res.render('details', cube);
 }
 
 router.get('/create', getCreateCube);
