@@ -16,7 +16,7 @@ const create = (name, description, imageUrl, difficulty) => {
     return cube.save();
 };
 
-const getOne = (id) => Cube.findById(id);
+const getOne = (id) => Cube.findById(id).lean();
 
 const search = (text, from, to) => {
     let result = getAll();
