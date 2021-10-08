@@ -8,8 +8,8 @@ router.get('/add', async (req, res) => {
     let cubeId = req.params.cubeId;
     let cube = await cubeService.getOne(cubeId);
 
-    let accessories = await accessoryService.getAll()
-    console.log(accessories);
+    let accessories = await accessoryService.getAllWithout(cube.accessories);
+
     res.render('cube/accessory/add', { cube, accessories })
 });
 

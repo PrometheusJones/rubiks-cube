@@ -18,6 +18,9 @@ const create = (name, description, imageUrl, difficulty) => {
 };
 
 const getOne = (id) => {
+    return Cube.findById(id).lean()
+};
+const getOneDetaild = (id) => {
     return Cube.findById(id).populate('accessories').lean()
 };
 
@@ -56,7 +59,8 @@ const cubeService = {
     getAll,
     getOne,
     search,
-    attachAccessory
+    attachAccessory,
+    getOneDetaild
 };
 
 module.exports = cubeService;
